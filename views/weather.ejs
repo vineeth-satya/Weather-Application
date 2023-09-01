@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      /* Reset some default styles */
+      * {
+  box-sizing: border-box;
+}
+
+      body,
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        /* background-image: url("https://images.unsplash.com/photo-1496450681664-3df85efbd29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"); */
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        /* background-image: url("https://images.unsplash.com/photo-1557683311-eac922347aa1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ymx1ZSUyMGFuZCUyMHB1cnBsZSUyMGdyYWRpZW50fGVufDB8fDB8fHww&w=1000&q=80");
+         */
+        background-image: url("https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80");
+        background-size: cover;
+        background-repeat: no-repeat;  
+    }
+
+      header {
+        background: rgba(33, 33, 33, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 10px;
+        border-style: outset;
+        border-color: solid black;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: black;
+        text-align: center;
+        padding: 20px 0;
+        background: #7474bf; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); 
+      
+      }
+
+      main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 50px;
+        margin-top: 20px;
+        background: #7474bf; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+
+      .search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+
+      #location {
+        flex: 2;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        width: 400px;
+      }
+
+      #search {
+        margin-left: 5px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        /* Added this */
+        justify-content: center; /* Added this */
+        align-items: center; /* Added this */
+        /* Added this to make it the same height as the input */
+      }
+
+      .material-symbols-outlined {
+        font-family: "Material Symbols Outlined", sans-serif;
+      }
+
+      .mainContainer {
+  width: 20rem;
+  height: 25rem;
+  border-radius: 1rem;
+  background: #fff;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #7474bf; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #348ac7,
+          #7474bf
+        ); 
+        
+}
+.mainContainer:hover{
+  &:after,&:before{
+		content:" ";
+		width:10px;
+		height:10px;
+		position:absolute;
+		border :0px solid #fff;
+		transition:all 1s;
+		}
+	&:after{
+		top:-1px;
+		left:-1px;
+		border-top:5px solid black;
+		border-left:5px solid black;
+	}
+	&:before{
+		bottom:-1px;
+		right:-1px;
+		border-bottom:5px solid black;
+		border-right:5px solid black;
+	}
+	&:hover{
+		border-top-right-radius:0px;
+	border-bottom-left-radius:0px;
+
+		&:before,&:after{
+			
+			width:100%;
+			height:100%;
+			
+		}
+	}
+
+}
+
+.searchInput {
+  width: 100%;
+  display: flex;
+  padding: 1rem 1rem;
+  justify-content: center;
+}
+
+.searchInput input {
+  width: 100%;
+  height: 2rem;
+  outline: none;
+  font-size: 0.8rem;
+  color: #525050;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid #b3b3b3;
+}
+
+.searchInput input:focus {
+  border: 1px solid #9c9dde;
+}
+
+.searchInput button {
+  width: 2.2rem;
+  height: 2rem;
+  cursor: pointer;
+  color: #9b9b9b;
+  border-radius: 50%;
+  margin-left: 0.4rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #b3b3b3;
+}
+
+.searchInput button:hover {
+  color: #fff;
+  background-color: #9c9dde;
+  border: 1px solid #9c9dde;
+}
+
+.weatherIcon {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  justify-content: center;
+}
+
+.weatherIcon img {
+  max-width: 100%;
+  width: 8rem;
+}
+.weatherDetails{
+    padding-top: 30px;
+}
+
+.cityDetails {
+  color: #323232;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.windDetails {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: space-around;
+}
+
+.windDetails .humidityBox {
+  display: flex;
+  font-size: 1rem;
+  color: #323232;
+}
+
+.windDetails .humidityBox img {
+  max-height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.windDetails .windSpeed {
+  display: flex;
+  font-size: 1rem;
+  color: #323232;
+}
+
+.windDetails .windSpeed img {
+  max-height: 3rem;
+  margin-right: 0.5rem;
+}
+.temp{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    text-align: center;
+}
+      /* Add more styles as needed to enhance your UI/UX */
+    </style>
+  </head>
+  <body >
+    <header>
+      <h1>Weather App</h1>
+    </header>
+    <main>
+      <div class="search-container">
+        <form class="form" action="/" method="POST">
+          <input
+            type="text"
+            id="location"
+            name="loc"
+            placeholder="Enter City or Location" />
+          <button id="search">
+            <div class="material-symbols-outlined">Search</div>
+          </button>
+        </form>
+      </div>
+    </main>
+      <div class="mainContainer col-3">
+        <div class="weatherDetails">
+            <div class="weatherIcon">
+                <img src="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-512.png" alt="Clouds" id="weatherIcon">            
+            </div>
+            <h1 class="temp"><%= condition %></h1>
+            <div class="cityDetails">
+                <div class="weather" id="weather"></div>
+                <div class="desc"></div>
+            </div>
+            <div class="windDetails">
+                <div class="humidityBox">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgr7XehXJkOPXbZr8xL42sZEFYlS-1fQcvUMsS2HrrV8pcj3GDFaYmYmeb3vXfMrjGXpViEDVfvLcqI7pJ03pKb_9ldQm-Cj9SlGW2Op8rxArgIhlD6oSLGQQKH9IqH1urPpQ4EAMCs3KOwbzLu57FDKv01PioBJBdR6pqlaxZTJr3HwxOUlFhC9EFyw/s320/thermometer.png" alt="Humidity">
+                    <div><p class="humidity"></p>
+                    <h2><span><%= Humidity %></span></h2>
+                </div>
+                </div>
+                <div class="windSpeed">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyaIguDPkbBMnUDQkGp3wLRj_kvd_GIQ4RHQar7a32mUGtwg3wHLIe0ejKqryX8dnJu-gqU6CBnDo47O7BlzCMCwRbB7u0Pj0CbtGwtyhd8Y8cgEMaSuZKrw5-62etXwo7UoY509umLmndsRmEqqO0FKocqTqjzHvJFC2AEEYjUax9tc1JMWxIWAQR4g/s320/wind.png">
+                    <div><p id="windSpeed"></p>
+                    <h2><span><%= Speed %></span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+</html>
